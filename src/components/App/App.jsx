@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
 import { Home } from 'components/pages/Home';
 import { Movies } from 'components/pages/Movies';
-import { MovieDetails } from 'components/MovieDetails';
+import { MovieDetails } from 'components/pages/MovieDetails';
 import { Cast } from 'components/Cast';
 import { Reviews } from 'components/Reviews';
 

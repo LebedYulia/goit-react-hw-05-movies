@@ -3,19 +3,15 @@ import axios from 'axios';
 const KEY = 'f15e9a3194e113470990f4a0e5a9c33f';
 const baseURL = 'https://api.themoviedb.org/3';
 
-
-
-export const getTrendingMovies = async(signal) => {
-
+export const getTrendingMovies = async signal => {
   const config = {
     baseURL,
-    signal,  
+    signal,
     params: {
       api_key: KEY,
-      language: 'en-ru',      
-    },    
+      language: 'en-ru',
+    },
   };
-  
 
   const response = await axios.get('/trending/movie/day', config);
   const data = await response.data;
@@ -23,9 +19,9 @@ export const getTrendingMovies = async(signal) => {
   return data.results;
 };
 
-export const getMovieById = async (id) => {
+export const getMovieById = async id => {
   const config = {
-    baseURL,    
+    baseURL,
     params: {
       api_key: KEY,
       language: 'en-ru',

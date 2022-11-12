@@ -23,6 +23,8 @@ export const Cast = () => {
   }
 
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
+  const altPosterUrl =
+    'https://www.vaureal.fr/sites/vaureal/files/styles/_site_contenu_image_principale/public/image/2022-03/Solidarit%C3%A9%20ukraine.jpg?itok=Gcqq2tD3';
 
   return (
     <>
@@ -30,7 +32,11 @@ export const Cast = () => {
       <ul>
         {credits.map(({ name, profile_path }) => (
           <li key={name}>
-            <img src={`${baseImgUrl}${profile_path}`} alt={name} width="160" />
+            <img
+              src={profile_path ? `${baseImgUrl}${profile_path}` : altPosterUrl}
+              alt={name}
+              width="160"
+            />
             <p>{name}</p>
           </li>
         ))}
