@@ -9,23 +9,21 @@ export const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState();
   const [search, setSearchParams] = useSearchParams();
-  
 
   const handleSearchFormSubmit = ({ inputValue }) => {
     if (inputValue === searchQuery) {
       return;
     }
     setSearchQuery(inputValue);
-    setSearchParams({search: inputValue});
+    setSearchParams({ search: inputValue });
   };
 
-  const searchValue = search.get('search') ?? ""; 
-  
+  const searchValue = search.get('search') ?? '';
 
   useEffect(() => {
     if (searchQuery === '') {
       return;
-    }    
+    }
 
     async function onSearch() {
       try {
@@ -43,10 +41,11 @@ export const Movies = () => {
 
     onSearch();
   }, [searchQuery]);
+ 
 
   return (
     <>
-      <SearchForm searchValue = {searchValue} onSubmit={handleSearchFormSubmit} />
+      <SearchForm searchValue={searchValue} onSubmit={handleSearchFormSubmit} />
       {movies && (
         <ul>
           {movies.map(({ id, title }) => (

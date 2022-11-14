@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { getTrendingMovies } from 'components/services/Api';
 import { MoviesList } from 'components/MoviesList';
 
@@ -16,7 +17,8 @@ export const Home = () => {
         console.log(moviesList);
         setMovies([...moviesList]);
       } catch (error) {
-        console.log(error, '1111');
+        console.log(error);
+        toast.error('Ooops!')
       }
     }
 
