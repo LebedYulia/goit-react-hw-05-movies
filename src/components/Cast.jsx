@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieAddInfo } from 'components/services/Api';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const [credits, setCredits] = useState(null);
+  
 
   useEffect(() => {
     async function getCastInfo() {
@@ -23,8 +24,7 @@ export const Cast = () => {
   }
 
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
-  const altPosterUrl =
-    'https://www.vaureal.fr/sites/vaureal/files/styles/_site_contenu_image_principale/public/image/2022-03/Solidarit%C3%A9%20ukraine.jpg?itok=Gcqq2tD3';
+  const altPosterUrl = `https://via.placeholder.com/160x240.png?text=No+photo`;
 
   return (
     <>
@@ -44,3 +44,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

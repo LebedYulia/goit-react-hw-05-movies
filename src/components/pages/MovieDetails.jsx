@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { HiArrowLeft } from 'react-icons/hi';
+import { ThreeDots } from 'react-loader-spinner';
+import toast from 'react-hot-toast';
 import { getMovieById } from 'components/services/Api';
 import { MovieCard } from '../MovieCard/MovieCard';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  console.log(movieId);
+  const location = useLocation();
+  
 
   useEffect(() => {
     async function getMovieDitails() {
@@ -15,6 +19,7 @@ export const MovieDetails = () => {
         setMovie(movieInfo);
       } catch (error) {
         console.log(error);
+        toast.error('Ooops! Something went wrong. Try again.')
       }
     }
 
@@ -27,11 +32,13 @@ export const MovieDetails = () => {
   const { poster_path, title, vote_average, overview, genres = [] } = movie;
   const genresList = genres.map(genre => genre.name).join(', ');
   const baseImgUrl = 'https://image.tmdb.org/t/p/w500';
-  const altPosterUrl =
-    'https://www.vaureal.fr/sites/vaureal/files/styles/_site_contenu_image_principale/public/image/2022-03/Solidarit%C3%A9%20ukraine.jpg?itok=Gcqq2tD3';
+  const altPosterUrl = `https://via.placeholder.com/360x540.png?text=${title}`;
 
   return (
     <>
+      <Link to={location.state?.from ?? '/'}>
+        <HiArrowLeft size="16" /> Go to back
+      </Link>
       <MovieCard
         poster_path={poster_path ? `${baseImgUrl}${poster_path}` : altPosterUrl}
         title={title}
@@ -42,13 +49,21 @@ export const MovieDetails = () => {
       <h3>Additional information</h3>
       <ul>
         <li>
-          <Link to="cast">Cast</Link>
+          <Link to="cast" state={{ from: location.state?.from ?? '/' }}>
+            Cast
+          </Link>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <Link to="reviews" state={{ from: location.state?.from ?? '/' }}>
+            Reviews
+          </Link>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={ <ThreeDots color="red" wrapperStyle={{ margin: 'auto' }} />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
+
+export default MovieDetails;

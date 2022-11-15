@@ -5,7 +5,7 @@ import { SearchForm } from 'components/SearchForm/SearchForm';
 import { getImageByQuery } from 'components/services/Api';
 import { MoviesList } from 'components/MoviesList';
 
-export const Movies = () => {
+const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState();
   const [search, setSearchParams] = useSearchParams();
@@ -41,7 +41,6 @@ export const Movies = () => {
 
     onSearch();
   }, [searchQuery]);
- 
 
   return (
     <>
@@ -56,3 +55,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;

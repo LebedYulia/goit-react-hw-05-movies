@@ -1,4 +1,6 @@
 import { Outlet } from 'react-router-dom';
+import { Suspense } from "react";
+import { ThreeDots } from 'react-loader-spinner';
 import { Container, Header, Link } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
@@ -12,7 +14,9 @@ export const SharedLayout = () => {
           <Link to="/movies">Movies</Link>
         </nav>
       </Header>
+      <Suspense fallback={ <ThreeDots color="red" wrapperStyle={{ margin: 'auto' }} />}>
       <Outlet />
+      </Suspense>
     </Container>
   );
 };

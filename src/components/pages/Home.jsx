@@ -3,30 +3,20 @@ import toast from 'react-hot-toast';
 import { getTrendingMovies } from 'components/services/Api';
 import { MoviesList } from 'components/MoviesList';
 
-export const Home = () => {
+ const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-    
-
     async function getMoviesList() {
       try {
-        const moviesList = await getTrendingMovies(signal);
-        console.log(moviesList);
+        const moviesList = await getTrendingMovies();        
         setMovies([...moviesList]);
       } catch (error) {
         console.log(error);
-        toast.error('Ooops!')
+        toast.error('Ooops! Something went wrong. Try again.')
       }
     }
-
-    getMoviesList();
-
-    return () => {
-      controller.abort();
-    };
+    getMoviesList();    
   }, []);
 
   return (
@@ -40,3 +30,4 @@ export const Home = () => {
     </>
   );
 };
+ export default Home;

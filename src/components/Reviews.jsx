@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieAddInfo } from 'components/services/Api';
 
-export const Reviews = () => {
+const Reviews = () => {
   const { movieId } = useParams();
   const [movieReveiws, setMovieReviews] = useState(null);
 
@@ -23,11 +23,11 @@ export const Reviews = () => {
   }
   return (
     <>
-      <h3>
+      <h2>
         {movieReveiws.length !== 0
           ? 'Reviews'
           : "We don't have any review for this movie."}
-      </h3>
+      </h2>
       <ul>
         {movieReveiws.map(({ author, content }) => (
           <li key={author}>
@@ -42,3 +42,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;
