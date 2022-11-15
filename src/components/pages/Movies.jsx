@@ -6,19 +6,19 @@ import { getImageByQuery } from 'components/services/Api';
 import { MoviesList } from 'components/MoviesList';
 
 const Movies = () => {
-  const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState();
   const [search, setSearchParams] = useSearchParams();
+
+  const searchQuery = search.get('search') ?? ''; 
+
 
   const handleSearchFormSubmit = ({ inputValue }) => {
     if (inputValue === searchQuery) {
       return;
     }
-    setSearchQuery(inputValue);
+
     setSearchParams({ search: inputValue });
   };
-
-  const searchValue = search.get('search') ?? '';
 
   useEffect(() => {
     if (searchQuery === '') {
@@ -33,7 +33,7 @@ const Movies = () => {
             'Sorry, there are no movies matching your search query. Please try again.'
           );
         }
-        setMovies([...data]);
+        setMovies(data);
       } catch (error) {
         toast.error('Something went wrong. Try again.');
       }
@@ -44,7 +44,7 @@ const Movies = () => {
 
   return (
     <>
-      <SearchForm searchValue={searchValue} onSubmit={handleSearchFormSubmit} />
+      <SearchForm searchValue={searchQuery} onSubmit={handleSearchFormSubmit} />
       {movies && (
         <ul>
           {movies.map(({ id, title }) => (

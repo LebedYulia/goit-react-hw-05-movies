@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getMovieAddInfo } from 'components/services/Api';
 
 const Cast = () => {
@@ -43,6 +44,11 @@ const Cast = () => {
       </ul>
     </>
   );
+};
+
+Cast.propTypes = {
+  name: PropTypes.string,
+  profile_path: PropTypes.string,  
 };
 
 export default Cast;

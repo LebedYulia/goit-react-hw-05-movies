@@ -1,5 +1,7 @@
 import React from 'react';
 import { Container, InfoBox } from './MovieCard.styled';
+import PropTypes from 'prop-types';
+
 
 export const MovieCard = ({
   poster_path,
@@ -27,4 +29,12 @@ export const MovieCard = ({
       </InfoBox>
     </Container>
   );
+};
+
+MovieCard.propTypes = {
+  poster_path: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  vote_average: PropTypes.number.isRequired,
+  overview: PropTypes.string,
+  genres: PropTypes.string.isRequired,
 };

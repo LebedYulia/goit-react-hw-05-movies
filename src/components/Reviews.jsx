@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getMovieAddInfo } from 'components/services/Api';
 
 const Reviews = () => {
@@ -41,6 +42,10 @@ const Reviews = () => {
       </ul>
     </>
   );
+};
+Reviews.propTypes = {
+  author: PropTypes.string,
+  content: PropTypes.string,  
 };
 
 export default Reviews;

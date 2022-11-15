@@ -20,8 +20,7 @@ export const SearchForm = ({ searchValue, onSubmit }) => {
       toast.error('Please, enter search query!');
       return;
     }
-    onSubmit(value);
-  };
+    onSubmit(value);};
 
  
 
